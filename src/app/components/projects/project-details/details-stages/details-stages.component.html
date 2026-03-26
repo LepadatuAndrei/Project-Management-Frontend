@@ -1,0 +1,19 @@
+<div [ngSwitch]="displayState">
+    <div *ngSwitchCase="'add'">
+        <app-stage-creation-form [idProject]="idProject" (stageCreatedEvent)="onStageCreated($event)"
+        (cancelEvent)="changeDisplay('list')"></app-stage-creation-form>
+    </div>
+    <div *ngSwitchCase="'list'">
+        <app-stage-list [stages]="stages" (addNewStageEvent)="changeDisplay('add')"
+        (stageSelectEvent)="selectStage($event)"></app-stage-list>
+    </div>
+    <div *ngSwitchCase="'info'">
+        <app-stage-info [stage]="selectedStage" (backButtonPressEvent)="changeDisplay('list')"
+            (deleteEvent)="onStageDeleted()">
+        </app-stage-info>
+    </div>
+    <div *ngSwitchDefault>
+        <div>undefined</div>
+    </div>
+</div>
+    

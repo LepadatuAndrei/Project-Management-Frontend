@@ -1,0 +1,14 @@
+<div *ngIf="stage != null">
+    <div class="d-flex flex-column">
+        <h4>Stage Details</h4>
+        <h3>{{stage.stageName}}</h3>
+        <div class="d-inline-flex">
+            <div class="align-self-start">Tasks:</div>
+            <div class="border" style="margin: 0% 2%; padding: 0% 1%;">{{stage.tasks}}</div>
+        </div>
+        <div class="d-inline-flex justify-content-center" style="margin: 1.5% 1.5%;">
+            <button class="btn btn-outline-secondary" (click)="onBackButtonPressed()">Back</button>
+            <button class="btn btn-danger" (click)="onDeleteButtonPressed()">Delete</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand navbar-light bg-info topbar mb-4 sticky-top shadow">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand text-gray-900" routerLink={{navbarBrandLink}}>
+                <div class="d-inline-flex align-items-center">
+                    <img src="assets/img/aleph3.svg" style="width: 10%; height: 10%;">
+                    Aleph Project Management
+                </div>
+            </a>
+            <div class="btn-group" role="group">
+                <button class="btn btn-primary" type="button"
+                routerLink="ResearchProjects">
+                    View Projects
+                </button>
+                <button class="btn btn-primary" type="button" routerLink="CreateProject">
+                    Create Project
+                </button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div class="dropdown" style="margin-right: 60%;">
+                <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown"
+                    [hidden]="showLogin">
+                    <span class="mr-2 d-none d-lg-inline text-gray-900">{{userDisplayName}}</span>
+                    <img class="img-profile rounded-circle" src="assets/img/user.svg"
+                        style="width: 50%; height: 50%">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-info">
+                    <li class="dropdown-item"><button tabindex="-1" class="dropdown-item" routerLink="Account">
+                        <fa-icon class="fa-sm fa-fw mr-2 text-gray-400" [icon]="faUser"></fa-icon>
+                        Account
+                    </button></li>
+                    <li class="dropdown-item"><button tabindex="-1" class="dropdown-item" (click)="signOut()">
+                        <fa-icon class="fa-sm fa-fw mr-2 text-gray-400" [icon]="faSignOut"></fa-icon>
+                        Sign Out
+                    </button></li>
+                </ul>
+              </div> 
+            <button class="btn btn-primary btn-sm" type="button" routerLink="Login" [hidden]="!showLogin">
+                Login
+            </button>
+        </div>
+    </div>
+</nav>

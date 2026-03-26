@@ -1,0 +1,20 @@
+<ng-template [ngIf]="stages.length > 0" [ngIfElse]="stagesEmpty">
+    <div class="d-flex justify-content-center">
+        <div class="list-group">
+            <button *ngFor="let stage of stages" class="list-group-item list-group-item-action"
+                type="button" (click)="stageSelected(stage)">{{stage.stageName}}</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #stagesEmpty>
+    <div class="text-center">
+        No information available.
+    </div>
+</ng-template>
+<ul class="nav justify-content-center" style="padding: 1% 0%;">
+    <li class="nav-item">
+        <a class="link-secondary" type="button" (click)="addButtonPressed()">
+            Add new stage
+        </a>
+    </li>
+</ul>

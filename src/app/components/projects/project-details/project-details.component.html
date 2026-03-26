@@ -1,0 +1,35 @@
+<div *ngIf="project != null" class="mb-4">
+    <div class="container text-gray-900">
+        <div class="col-sm-4">
+            <div class="row text-center">
+                <h1>{{project.projectName}}</h1>
+            </div>
+            <div class="row text-center">
+                <h3>Details</h3>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow mt-2">
+                <div class="card-body text-gray-900">
+                    <ul class="nav nav-tabs">
+                        <li *ngFor="let tab of tabs" class="nav-item">
+                            <button class="nav-link" [class.active]="currentTab == tab"
+                                (click)="changeTab(tab)">
+                                {{tab}}
+                            </button>
+                        </li>
+                    </ul>
+                    <div [ngSwitch]="currentTab" style="padding-top: 10px; margin-bottom: 20px;">
+                        <app-details-overview *ngSwitchCase="'Overview'" [project]="project"></app-details-overview>
+                        <app-details-stages *ngSwitchCase="'Stages'" [idProject]="project.idProject"
+                            [stages]="project.stages" (stageCreatedEvent)="onStageCreated($event)"></app-details-stages>
+                        <app-details-settings *ngSwitchCase="'Settings'"
+                            [idProject]="project.idProject"></app-details-settings>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

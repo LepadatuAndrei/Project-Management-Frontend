@@ -1,0 +1,90 @@
+<div *ngIf="project != null" class="container">
+    <div class="row row-cols-1 gy-2">
+        <div *ngIf="alertMsg != ''" class="d-inline-flex justify-content-center">
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <strong>Saving failed</strong>
+                <br>
+                {{alertMsg}}
+                <button type="button" class="btn-close" (click)="alertMsg=''"></button>
+            </div>
+        </div>
+        <div class="col">Creation date: {{project.projectCreationDate | date: 'mediumDate'}}</div>
+        <div *ngIf="modifyMode" class="d-flex justify-content-center">
+            <div class="font-weight-bold" style="padding-right: 1%;">Project Name:</div>
+            <input type="text" required minlength="5" maxlength="100" [(ngModel)]="name">
+        </div>
+        <div class="col">
+            <div class="card shadow border-left-primary">
+                <div class="card-header">
+                    <div class="font-weight-bold">Project Description</div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <ng-template [ngIf]="modifyMode" [ngIfElse]="showDesc">
+                            <textarea name="projectDescriptionTextarea" rows="6" cols="100"
+                                maxlength="10000" [(ngModel)]="description"></textarea>
+                        </ng-template>
+                        <ng-template #showDesc>
+                            <div [ngSwitch]="project.projectDescription" style="padding: 0% 2%;">
+                                <p *ngSwitchCase="''">
+                                    No information available.
+                                </p>
+                                <p  *ngSwitchDefault>
+                                    {{project.projectDescription}}
+                                </p>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="col">
+            <div class="card shadow border-left-primary">
+                <div class="card-header">
+                    <div class="font-weight-bold">Project Objectives</div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <ng-template [ngIf]="modifyMode" [ngIfElse]="showObj">
+                            <textarea name="projectObjectivesTextarea" rows="6" cols="100"
+                                maxlength="10000" [(ngModel)]="objectives"></textarea>
+                        </ng-template>
+                        <ng-template #showObj>
+                            <div [ngSwitch]="project.projectObjectives" style="padding: 0% 2%;">
+                                <p *ngSwitchCase="''">
+                                    No information available.
+                                </p>
+                                <p *ngSwitchDefault>
+                                    {{project.projectObjectives}}
+                                </p>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav justify-content-center mt-4">
+        <ng-template [ngIf]="modifyMode" [ngIfElse]="modify">
+            <li class="nav-item" style="padding-right: 25px;">
+                <a class="link-secondary" type="button" (click)="saveChanges()">
+                    Save Changes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="link-secondary" type="button" (click)="discardChanges()">
+                    Cancel
+                </a>
+            </li>
+        </ng-template>
+        <ng-template #modify>
+            <li class="nav-item">
+                <a class="link-secondary" type="button" (click)="toggleModifyMode()">
+                    Modify Overview...
+                </a>
+            </li>
+        </ng-template>
+    </ul>
+</div>

@@ -1,0 +1,35 @@
+<div class="container col-lg-10" style="padding-top: 2%;">
+    <div *ngIf="formErrorMessage" class="text-center text-danger">
+        {{formErrorMessage}}
+      </div>
+    <form class="text-gray-900" #createProjectForm="ngForm" (submit)="create(createProjectForm)">
+        <div class="mb-3">
+            <label for="projectNameInput" class="form-label">Project Name</label>
+            <input #name="ngModel" type="text" class="form-control" ngModel 
+                name="projectNameInput" required minlength="5" maxlength="100">
+            <div *ngIf="name.invalid && (name.touched)" class="text-center text-danger">
+                <div *ngIf="name.errors?.['required']">
+                    Project name is required
+                </div>
+                <div *ngIf="name.errors?.['minlength']">
+                    Project name must be at least 5 characters long
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="projectDescriptionTextarea" class="form-label">Project Description</label>
+            <textarea class="form-control" name="projectDescriptionTextarea" rows="3"
+                maxlength="10000" ngModel></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="projectObjectivesTextarea" class="form-label">Project Objectives</label>
+            <textarea class="form-control" name="projectObjectivesTextarea" rows="3"
+                maxlength="10000" ngModel></textarea>
+        </div>
+        
+        <div class="d-flex justify-content-center" style="padding-top: 2%;">
+            <button [disabled]="createProjectForm.invalid" class="btn btn-primary"
+                    type="submit">Submit</button>
+        </div>
+    </form>
+</div>

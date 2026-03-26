@@ -1,0 +1,22 @@
+<div class="container col-lg-7">
+    <div *ngIf="loginErrorMessage" class="text-center text-danger">
+        {{loginErrorMessage}}
+      </div>
+    <form class="form-signin user" #loginForm="ngForm" (submit)="login(loginForm)">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control form-control-user" id="EmailInput" 
+                    ngModel name="emailInput" placeholder="" 
+                    required email>
+            <label for="emailInput">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control form-control-user" id="PasswordInput" 
+                    ngModel name="passwordInput" placeholder="" 
+                    required>
+            <label for="PasswordInput">Password</label>
+        </div>
+        <div class="d-flex justify-content-center" style="padding-top: 25px;">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
